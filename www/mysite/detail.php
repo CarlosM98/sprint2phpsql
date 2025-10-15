@@ -14,6 +14,20 @@
                                 height: 150px;
                         }
                         a{ text-decoration: none;}
+                        form{
+                                width: 50vw;
+                                margin: auto;
+                        }
+                        .cuerpo{
+                                width: 50vw;
+                                margin: auto;
+                        }
+                        input[type="submit"]{
+                                display: block;
+                                margin-top: 5px;
+                                margin-left: auto;
+                                border-radius: 5px;
+                        }
                 </style>
         </head>
         <body>
@@ -26,9 +40,11 @@
                  $resultado = mysqli_query($db, $query) or die('Queryerror');
                  $only_row = mysqli_fetch_array($resultado);
                  echo '<h1>'.$only_row['nombre'].'</h1>';
+                 echo '<div class= "cuerpo">';
                  echo '<p>'.$only_row['autor'].'</p>';
                  echo '<p>'.$only_row['anho_publicacion'].'</p>';
                  echo '<img src="'.$only_row['url_imagen']. '"alt="Imagen libro">';
+                 echo '</div>';
                  echo '<hr>';
                  ?>
                  <h2>Comentarios</h2>
@@ -45,5 +61,13 @@
                         mysqli_close($db);
                         ?>
                  </ul>
+
+                <p>Deja un nuevo comentario</p>
+		<form action="/comment.php" method="post">
+			<textarea rows= "4" cols = "30" name = "new_comment"></textarea>
+			<br>
+			<input type="hidden" name = "libro_id" value = "<?php echo $libro_id; ?>">
+			<input type="submit" value="Comentar">
+		</form>
         </body>
 </html>
