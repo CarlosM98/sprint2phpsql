@@ -51,11 +51,11 @@
 
                  <ul>
                         <?php
-                        $query2 = 'select * from tComentarios where id ='.$libro_id;
+                        $query2 = 'select * from tComentarios where libro_id ='.$libro_id;
                         $resultado2 =  mysqli_query($db, $query2) or die('Query error');
-                        echo 'Numero de filas: '.mysqli_num_rows($resultado2).'<br>';
+                        echo '<br>';
                         while($row = mysqli_fetch_array($resultado2)){
-                        echo '<li>'.$row['comentario'].'</li>';
+                        echo '<li>'.$row['comentario'].$row['fecha_coment'].'</li>';
 
                         }
                         mysqli_close($db);
